@@ -1,0 +1,34 @@
+{% extends 'layout.html' %}
+{% block content %}
+  <h1>{{ message }}</h1>
+
+  {% if searchForm %}
+    <form action="{% url 'main_app:index' %}" method="get">
+      <div>
+        {{ searchForm }}
+        <input type="submit" class="btn btn-outline-primary" value="検索"/>
+        <a href="{% url 'main_app:index' %}" class="btn btn-outline-secondary">クリア</a>
+      </div>
+    </form>
+  {% endif %}
+  
+  <table  class="table table-striped table-hover">
+    {% for key,value in rankings_dict.items %}
+      <tr>
+        <td><h4>{{ value.title }}</h4></td>
+        <td>カテゴリ：{{ value.categories }}</td>
+        <td><a href="{% url 'main_app:detail' value.uuid %}" class="btn btn-outline-primary">詳細</a></td>
+      </tr>
+    {% endfor %}
+  </table>
+
+  {% if user.is_authenticated %}
+  <p>
+    <a href="{% url 'main_app:new' %}" class="btn btn-outline-secondary">新規</a>
+  </p>
+  {% else %}
+  <p>
+    <a href="{% url 'login' %}" class="btn btn-outline-secondary">自分でランキングを作成</a>
+  </p>
+  {% endif %}
+{% endblock %}

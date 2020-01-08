@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+{% load bootstrap4 %}
+{% block content %}
+  <h1>{{ message }}</h1>
+
+  <form action="{% url 'main_app:create' %}" method="post">
+    {% csrf_token %}
+    {% bootstrap_form rankingForm layout='horizontal' %}
+    <button type="submit" class="btn btn-outline-primary">作成する</button>
+    <a href="{% url 'main_app:index' %}" class="btn btn-outline-secondary">戻る</a>
+  </form>
+{% endblock %}

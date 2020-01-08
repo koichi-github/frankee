@@ -1,0 +1,500 @@
+{% extends 'layout.html' %}
+{% block content %}
+<p>{{ message }}</p>
+<h1>{{ ranking.title }}</h1>
+<!-- <label><textarea name="description" cols="30" rows="10">{{ ranking.description }}</textarea></label> -->
+<p>説明：{{ ranking.description }}</p>
+<p>カテゴリ：{% for category in categories_list %} {{ category }} {% endfor %}</p>
+<table class="table table-striped table-hover">
+  <tr>
+    <th>項目</th>
+    <th>投票数</th>
+    <th>投票</th>
+  </tr>
+  <form action="{% url 'main_app:vote' ranking.uuid %}" method="post">
+    {% csrf_token %}
+    <tr>
+      <td>{{ sorted_item_name_list.0 }}</td>
+      <td>{{ sorted_quantity_list.0 }}</td>
+      <td>
+        {% if request_user != "AnonymousUser" %}
+        {% if voteable_Judgment == 1  %}
+        <button type="submit" name="vote_place1" value="True" class="btn btn-primary">投票</button>
+        {% endif %}
+        {% if sorted_user_vote_quantity_list.0 != 0 %}
+        <span>投票済</span>
+        <button type="submit" name="vote_cancel_place1" value="True" class="btn btn-secondary">取消</button>
+        {% endif %}
+        {% endif %}
+      </td>
+    </tr>
+    <tr>
+      <td>{{ sorted_item_name_list.1 }}</td>
+      <td>{{ sorted_quantity_list.1 }}</td>
+      <td>
+        {% if request_user != "AnonymousUser" %}
+        {% if voteable_Judgment == 1  %}
+        <button type="submit" name="vote_place2" value="True" class="btn btn-primary">投票</button>
+        {% endif %}
+        {% if sorted_user_vote_quantity_list.1 != 0 %}
+        <button type="submit" name="vote_cancel_place2" value="True" class="btn btn-secondary">取消</button>
+        {% endif %}
+        {% endif %}
+      </td>
+    </tr>
+    <tr>
+      <td>{{ sorted_item_name_list.2 }}</td>
+      <td>{{ sorted_quantity_list.2 }}</td>
+      <td>
+        {% if request_user != "AnonymousUser" %}
+        {% if voteable_Judgment == 1  %}
+        <button type="submit" name="vote_place3" value="True" class="btn btn-primary">投票</button>
+        {% endif %}
+        {% if sorted_user_vote_quantity_list.2 != 0 %}
+        <button type="submit" name="vote_cancel_place3" value="True" class="btn btn-secondary">取消</button>
+        {% endif %}
+        {% endif %}
+      </td>
+    </tr>
+    {% if item_range >= 4 %}
+    <tr>
+      <td>{{ sorted_item_name_list.3 }}</td>
+      <td>{{ sorted_quantity_list.3 }}</td>
+      <td>
+        {% if request_user != "AnonymousUser" %}
+        {% if voteable_Judgment == 1  %}
+        <button type="submit" name="vote_place4" value="True" class="btn btn-primary">投票</button>
+        {% endif %}
+        {% if sorted_user_vote_quantity_list.3 != 0 %}
+        <button type="submit" name="vote_cancel_place4" value="True" class="btn btn-secondary">取消</button>
+        {% endif %}
+        {% endif %}
+      </td>
+    </tr>
+    {% endif %}
+    {% if item_range >= 5 %}
+    <tr>
+      <td>{{ sorted_item_name_list.4 }}</td>
+      <td>{{ sorted_quantity_list.4 }}</td>
+      <td>
+        {% if request_user != "AnonymousUser" %}
+        {% if voteable_Judgment == 1  %}
+        <button type="submit" name="vote_place5" value="True" class="btn btn-primary">投票</button>
+        {% endif %}
+        {% if sorted_user_vote_quantity_list.4 != 0 %}
+        <button type="submit" name="vote_cancel_place5" value="True" class="btn btn-secondary">取消</button>
+        {% endif %}
+        {% endif %}
+      </td>
+    </tr>
+    {% endif %}
+    {% if item_range >= 6 %}
+    <tr>
+      <td>{{ sorted_item_name_list.5 }}</td>
+      <td>{{ sorted_quantity_list.5 }}</td>
+      <td>
+        {% if request_user != "AnonymousUser" %}
+        {% if voteable_Judgment == 1  %}
+        <button type="submit" name="vote_place6" value="True" class="btn btn-primary">投票</button>
+        {% endif %}
+        {% if sorted_user_vote_quantity_list.5 != 0 %}
+        <button type="submit" name="vote_cancel_place6" value="True" class="btn btn-secondary">取消</button>
+        {% endif %}
+        {% endif %}
+      </td>
+    </tr>
+    {% endif %}
+    {% if item_range >= 7 %}
+    <tr>
+      <td>{{ sorted_item_name_list.6 }}</td>
+      <td>{{ sorted_quantity_list.6 }}</td>
+      <td>
+        {% if request_user != "AnonymousUser" %}
+        {% if voteable_Judgment == 1  %}
+        <button type="submit" name="vote_place7" value="True" class="btn btn-primary">投票</button>
+        {% endif %}
+        {% if sorted_user_vote_quantity_list.6 != 0 %}
+        <button type="submit" name="vote_cancel_place7" value="True" class="btn btn-secondary">取消</button>
+        {% endif %}
+        {% endif %}
+      </td>
+    </tr>
+    {% endif %}
+    {% if item_range >= 8 %}
+    <tr>
+      <td>{{ sorted_item_name_list.7 }}</td>
+      <td>{{ sorted_quantity_list.7 }}</td>
+      <td>
+        {% if request_user != "AnonymousUser" %}
+        {% if voteable_Judgment == 1  %}
+        <button type="submit" name="vote_place8" value="True" class="btn btn-primary">投票</button>
+        {% endif %}
+        {% if sorted_user_vote_quantity_list.7 != 0 %}
+        <button type="submit" name="vote_cancel_place8" value="True" class="btn btn-secondary">取消</button>
+        {% endif %}
+        {% endif %}
+      </td>
+    </tr>
+    {% endif %}
+    {% if item_range >= 9 %}
+    <tr>
+      <td>{{ sorted_item_name_list.8 }}</td>
+      <td>{{ sorted_quantity_list.8 }}</td>
+      <td>
+        {% if request_user != "AnonymousUser" %}
+        {% if voteable_Judgment == 1  %}
+        <button type="submit" name="vote_place9" value="True" class="btn btn-primary">投票</button>
+        {% endif %}
+        {% if sorted_user_vote_quantity_list.8 != 0 %}
+        <button type="submit" name="vote_cancel_place9" value="True" class="btn btn-secondary">取消</button>
+        {% endif %}
+        {% endif %}
+      </td>
+    </tr>
+    {% endif %}
+    {% if item_range >= 10 %}
+    <tr>
+      <td>{{ sorted_item_name_list.9 }}</td>
+      <td>{{ sorted_quantity_list.9 }}</td>
+      <td>
+        {% if request_user != "AnonymousUser" %}
+        {% if voteable_Judgment == 1  %}
+        <button type="submit" name="vote_place10" value="True" class="btn btn-primary">投票</button>
+        {% endif %}
+        {% if sorted_user_vote_quantity_list.9 != 0 %}
+        <button type="submit" name="vote_cancel_place10" value="True" class="btn btn-secondary">取消</button>
+        {% endif %}
+        {% endif %}
+      </td>
+    </tr>
+    {% endif %}
+    {% if item_range >= 11 %}
+    <tr>
+      <td>{{ sorted_item_name_list.10 }}</td>
+      <td>{{ sorted_quantity_list.10 }}</td>
+      <td>
+        {% if request_user != "AnonymousUser" %}
+        {% if voteable_Judgment == 1  %}
+        <button type="submit" name="vote_place11" value="True" class="btn btn-primary">投票</button>
+        {% endif %}
+        {% if sorted_user_vote_quantity_list.10 != 0 %}
+        <button type="submit" name="vote_cancel_place11" value="True" class="btn btn-secondary">取消</button>
+        {% endif %}
+        {% endif %}
+      </td>
+    </tr>
+    {% endif %}
+    {% if item_range >= 12 %}
+    <tr>
+      <td>{{ sorted_item_name_list.11 }}</td>
+      <td>{{ sorted_quantity_list.11 }}</td>
+      <td>
+        {% if request_user != "AnonymousUser" %}
+        {% if voteable_Judgment == 1  %}
+        <button type="submit" name="vote_place12" value="True" class="btn btn-primary">投票</button>
+        {% endif %}
+        {% if sorted_user_vote_quantity_list.11 != 0 %}
+        <button type="submit" name="vote_cancel_place12" value="True" class="btn btn-secondary">取消</button>
+        {% endif %}
+        {% endif %}
+      </td>
+    </tr>
+    {% endif %}
+    {% if item_range >= 13 %}
+    <tr>
+      <td>{{ sorted_item_name_list.12 }}</td>
+      <td>{{ sorted_quantity_list.12 }}</td>
+      <td>
+        {% if request_user != "AnonymousUser" %}
+        {% if voteable_Judgment == 12  %}
+        <button type="submit" name="vote_place13" value="True" class="btn btn-primary">投票</button>
+        {% endif %}
+        {% if sorted_user_vote_quantity_list.1 != 0 %}
+        <button type="submit" name="vote_cancel_place13" value="True" class="btn btn-secondary">取消</button>
+        {% endif %}
+        {% endif %}
+      </td>
+    </tr>
+    {% endif %}
+    {% if item_range >= 14 %}
+    <tr>
+      <td>{{ sorted_item_name_list.13 }}</td>
+      <td>{{ sorted_quantity_list.13 }}</td>
+      <td>
+        {% if request_user != "AnonymousUser" %}
+        {% if voteable_Judgment == 1  %}
+        <button type="submit" name="vote_place14" value="True" class="btn btn-primary">投票</button>
+        {% endif %}
+        {% if sorted_user_vote_quantity_list.13 != 0 %}
+        <button type="submit" name="vote_cancel_place14" value="True" class="btn btn-secondary">取消</button>
+        {% endif %}
+        {% endif %}
+      </td>
+    </tr>
+    {% endif %}
+    {% if item_range >= 15 %}
+    <tr>
+      <td>{{ sorted_item_name_list.14 }}</td>
+      <td>{{ sorted_quantity_list.14 }}</td>
+      <td>
+        {% if request_user != "AnonymousUser" %}
+        {% if voteable_Judgment == 1  %}
+        <button type="submit" name="vote_place15" value="True" class="btn btn-primary">投票</button>
+        {% endif %}
+        {% if sorted_user_vote_quantity_list.14 != 0 %}
+        <button type="submit" name="vote_cancel_place15" value="True" class="btn btn-secondary">取消</button>
+        {% endif %}
+        {% endif %}
+      </td>
+    </tr>
+    {% endif %}
+    {% if item_range >= 16 %}
+    <tr>
+      <td>{{ sorted_item_name_list.15 }}</td>
+      <td>{{ sorted_quantity_list.15 }}</td>
+      <td>
+        {% if request_user != "AnonymousUser" %}
+        {% if voteable_Judgment == 1  %}
+        <button type="submit" name="vote_place16" value="True" class="btn btn-primary">投票</button>
+        {% endif %}
+        {% if sorted_user_vote_quantity_list.15 != 0 %}
+        <button type="submit" name="vote_cancel_place16" value="True" class="btn btn-secondary">取消</button>
+        {% endif %}
+        {% endif %}
+      </td>
+    </tr>
+    {% endif %}
+    {% if item_range >= 17 %}
+    <tr>
+      <td>{{ sorted_item_name_list.16 }}</td>
+      <td>{{ sorted_quantity_list.16 }}</td>
+      <td>
+        {% if request_user != "AnonymousUser" %}
+        {% if voteable_Judgment == 1  %}
+        <button type="submit" name="vote_place17" value="True" class="btn btn-primary">投票</button>
+        {% endif %}
+        {% if sorted_user_vote_quantity_list.16 != 0 %}
+        <button type="submit" name="vote_cancel_place17" value="True" class="btn btn-secondary">取消</button>
+        {% endif %}
+        {% endif %}
+      </td>
+    </tr>
+    {% endif %}
+    {% if item_range >= 18 %}
+    <tr>
+      <td>{{ sorted_item_name_list.17 }}</td>
+      <td>{{ sorted_quantity_list.17 }}</td>
+      <td>
+        {% if request_user != "AnonymousUser" %}
+        {% if voteable_Judgment == 1  %}
+        <button type="submit" name="vote_place18" value="True" class="btn btn-primary">投票</button>
+        {% endif %}
+        {% if sorted_user_vote_quantity_list.17 != 0 %}
+        <button type="submit" name="vote_cancel_place18" value="True" class="btn btn-secondary">取消</button>
+        {% endif %}
+        {% endif %}
+      </td>
+    </tr>
+    {% endif %}
+    {% if item_range >= 19 %}
+    <tr>
+      <td>{{ sorted_item_name_list.18 }}</td>
+      <td>{{ sorted_quantity_list.18 }}</td>
+      <td>
+        {% if request_user != "AnonymousUser" %}
+        {% if voteable_Judgment == 1  %}
+        <button type="submit" name="vote_place19" value="True" class="btn btn-primary">投票</button>
+        {% endif %}
+        {% if sorted_user_vote_quantity_list.18 != 0 %}
+        <button type="submit" name="vote_cancel_place19" value="True" class="btn btn-secondary">取消</button>
+        {% endif %}
+        {% endif %}
+      </td>
+    </tr>
+    {% endif %}
+    {% if item_range >= 20 %}
+    <tr>
+      <td>{{ sorted_item_name_list.19 }}</td>
+      <td>{{ sorted_quantity_list.19 }}</td>
+      <td>
+        {% if request_user != "AnonymousUser" %}
+        {% if voteable_Judgment == 1  %}
+        <button type="submit" name="vote_place20" value="True" class="btn btn-primary">投票</button>
+        {% endif %}
+        {% if sorted_user_vote_quantity_list.19 != 0 %}
+        <button type="submit" name="vote_cancel_place20" value="True" class="btn btn-secondary">取消</button>
+        {% endif %}
+        {% endif %}
+      </td>
+    </tr>
+    {% endif %}
+    {% if item_range >= 21 %}
+    <tr>
+      <td>{{ sorted_item_name_list.20 }}</td>
+      <td>{{ sorted_quantity_list.20 }}</td>
+      <td>
+        {% if request_user != "AnonymousUser" %}
+        {% if voteable_Judgment == 1  %}
+        <button type="submit" name="vote_place21" value="True" class="btn btn-primary">投票</button>
+        {% endif %}
+        {% if sorted_user_vote_quantity_list.20 != 0 %}
+        <button type="submit" name="vote_cancel_place21" value="True" class="btn btn-secondary">取消</button>
+        {% endif %}
+        {% endif %}
+      </td>
+    </tr>
+    {% endif %}
+    {% if item_range >= 22 %}
+    <tr>
+      <td>{{ sorted_item_name_list.21 }}</td>
+      <td>{{ sorted_quantity_list.21 }}</td>
+      <td>
+        {% if request_user != "AnonymousUser" %}
+        {% if voteable_Judgment == 1  %}
+        <button type="submit" name="vote_place22" value="True" class="btn btn-primary">投票</button>
+        {% endif %}
+        {% if sorted_user_vote_quantity_list.21 != 0 %}
+        <button type="submit" name="vote_cancel_place22" value="True" class="btn btn-secondary">取消</button>
+        {% endif %}
+        {% endif %}
+      </td>
+    </tr>
+    {% endif %}
+    {% if item_range >= 23 %}
+    <tr>
+      <td>{{ sorted_item_name_list.22 }}</td>
+      <td>{{ sorted_quantity_list.22 }}</td>
+      <td>
+        {% if request_user != "AnonymousUser" %}
+        {% if voteable_Judgment == 1  %}
+        <button type="submit" name="vote_place23" value="True" class="btn btn-primary">投票</button>
+        {% endif %}
+        {% if sorted_user_vote_quantity_list.22 != 0 %}
+        <button type="submit" name="vote_cancel_place23" value="True" class="btn btn-secondary">取消</button>
+        {% endif %}
+        {% endif %}
+      </td>
+    </tr>
+    {% endif %}
+    {% if item_range >= 24 %}
+    <tr>
+      <td>{{ sorted_item_name_list.23 }}</td>
+      <td>{{ sorted_quantity_list.23 }}</td>
+      <td>
+        {% if request_user != "AnonymousUser" %}
+        {% if voteable_Judgment == 1  %}
+        <button type="submit" name="vote_place24" value="True" class="btn btn-primary">投票</button>
+        {% endif %}
+        {% if sorted_user_vote_quantity_list.23 != 0 %}
+        <button type="submit" name="vote_cancel_place24" value="True" class="btn btn-secondary">取消</button>
+        {% endif %}
+        {% endif %}
+      </td>
+    </tr>
+    {% endif %}
+    {% if item_range >= 25 %}
+    <tr>
+      <td>{{ sorted_item_name_list.24 }}</td>
+      <td>{{ sorted_quantity_list.24 }}</td>
+      <td>
+        {% if request_user != "AnonymousUser" %}
+        {% if voteable_Judgment == 1  %}
+        <button type="submit" name="vote_place25" value="True" class="btn btn-primary">投票</button>
+        {% endif %}
+        {% if sorted_user_vote_quantity_list.24 != 0 %}
+        <button type="submit" name="vote_cancel_place25" value="True" class="btn btn-secondary">取消</button>
+        {% endif %}
+        {% endif %}
+      </td>
+    </tr>
+    {% endif %}
+    {% if item_range >= 26 %}
+    <tr>
+      <td>{{ sorted_item_name_list.25 }}</td>
+      <td>{{ sorted_quantity_list.25 }}</td>
+      <td>
+        {% if request_user != "AnonymousUser" %}
+        {% if voteable_Judgment == 1  %}
+        <button type="submit" name="vote_place26" value="True" class="btn btn-primary">投票</button>
+        {% endif %}
+        {% if sorted_user_vote_quantity_list.25 != 0 %}
+        <button type="submit" name="vote_cancel_place26" value="True" class="btn btn-secondary">取消</button>
+        {% endif %}
+        {% endif %}
+      </td>
+    </tr>
+    {% endif %}
+    {% if item_range >= 27 %}
+    <tr>
+      <td>{{ sorted_item_name_list.26 }}</td>
+      <td>{{ sorted_quantity_list.26 }}</td>
+      <td>
+        {% if request_user != "AnonymousUser" %}
+        {% if voteable_Judgment == 1  %}
+        <button type="submit" name="vote_place27" value="True" class="btn btn-primary">投票</button>
+        {% endif %}
+        {% if sorted_user_vote_quantity_list.26 != 0 %}
+        <button type="submit" name="vote_cancel_place27" value="True" class="btn btn-secondary">取消</button>
+        {% endif %}
+        {% endif %}
+      </td>
+    </tr>
+    {% endif %}
+    {% if item_range >= 28 %}
+    <tr>
+      <td>{{ sorted_item_name_list.27 }}</td>
+      <td>{{ sorted_quantity_list.27 }}</td>
+      <td>
+        {% if request_user != "AnonymousUser" %}
+        {% if voteable_Judgment == 1  %}
+        <button type="submit" name="vote_place28" value="True" class="btn btn-primary">投票</button>
+        {% endif %}
+        {% if sorted_user_vote_quantity_list.27 != 0 %}
+        <button type="submit" name="vote_cancel_place28" value="True" class="btn btn-secondary">取消</button>
+        {% endif %}
+        {% endif %}
+      </td>
+    </tr>
+    {% endif %}
+    {% if item_range >= 29 %}
+    <tr>
+      <td>{{ sorted_item_name_list.28 }}</td>
+      <td>{{ sorted_quantity_list.28 }}</td>
+      <td>
+        {% if request_user != "AnonymousUser" %}
+        {% if voteable_Judgment == 1  %}
+        <button type="submit" name="vote_place29" value="True" class="btn btn-primary">投票</button>
+        {% endif %}
+        {% if sorted_user_vote_quantity_list.28 != 0 %}
+        <button type="submit" name="vote_cancel_place29" value="True" class="btn btn-secondary">取消</button>
+        {% endif %}
+        {% endif %}
+      </td>
+    </tr>
+    {% endif %}
+    {% if item_range >= 30 %}
+    <tr>
+      <td>{{ sorted_item_name_list.29 }}</td>
+      <td>{{ sorted_quantity_list.29 }}</td>
+      <td>
+        {% if request_user != "AnonymousUser" %}
+        {% if voteable_Judgment == 1  %}
+        <button type="submit" name="vote_place30" value="True" class="btn btn-primary">投票</button>
+        {% endif %}
+        {% if sorted_user_vote_quantity_list.29 != 0 %}
+        <button type="submit" name="vote_cancel_place30" value="True" class="btn btn-secondary">取消</button>
+        {% endif %}
+        {% endif %}
+      </td>
+    </tr>
+    {% endif %}
+  </form>
+</table>
+<div>
+  <a href="{% url 'main_app:index' %}" class="btn btn-outline-primary">一覧</a>
+  {% if request.user.id == ranking.creator_id %}
+  <a href="{% url 'main_app:edit' ranking.uuid %}" class="btn btn-outline-primary">編集</a>
+  <a href="{% url 'main_app:delete' ranking.uuid %}" class="btn btn-outline-secondary">削除</a>
+  {% endif %}
+</div>
+{% endblock %}
