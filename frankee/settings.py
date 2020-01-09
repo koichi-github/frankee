@@ -79,7 +79,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'frankee.wsgi.application'
 
-LOGIN_REDIRECT_URL = '/'
+# LOGIN_REDIRECT_URL = '/'
 
 
 # Database
