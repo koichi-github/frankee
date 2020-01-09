@@ -25,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'h1t=_r2%gf4_+$$+e%(-#g(8bt2oq9_5ehk9&%*@1aks5(nn0f'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = FalseFalse
+DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
 
@@ -79,7 +79,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'frankee.wsgi.application'
 
-# LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/'
 
 
 # Database
