@@ -61,7 +61,7 @@ class DetailView(View):
         # 1~30位の投票数をリストに格納
         quantity_list = []
         for i in range(1,31):
-            temp_item_id = Item.objects.get(item__iexact=i).id
+            temp_item_id = Item.objects.get(item=i).id
             print("temp_item_id : " + str(temp_item_id))
             if VoteQuantity.objects.filter(rankings_id=id, items__id=temp_item_id).exists():
                 temp_vote_quantity_id = VoteQuantity.objects.get(rankings_id=id, items__id=temp_item_id).id
@@ -308,7 +308,7 @@ class UpdateView(LoginRequiredMixin, View):
 
         quantity_list = []
         for i in range(1,31):
-            temp_item_id = Item.objects.get(item__iexact=i).id
+            temp_item_id = Item.objects.get(item=i).id
             print("temp_item_id : " + str(temp_item_id))
             if VoteQuantity.objects.filter(rankings_id=id, items__id=temp_item_id).exists():
                 temp_vote_quantity_id = VoteQuantity.objects.get(rankings_id=id, items__id=temp_item_id).id
@@ -421,9 +421,9 @@ class VoteView(LoginRequiredMixin, View):
 
         # 投票するか投票キャンセルか(vote_status)で分岐
         if vote_status == "vote":
-            true_vote_item = VoteQuantity.objects.filter(rankings_id=id).order_by('-quantity')[:item_range][::1][true_vote_place - 1].items
+            true_vote_item = VoteQuantity.objects.filter(rankings_id=id).order_by('-quantity')[:item_range][::1][true_vote_place - 1].items.item
             print("true_vote_item : " + str(true_vote_item))
-            rial_item_id = Item.objects.get(item__iexact=true_vote_item).id
+            rial_item_id = Item.objects.get(item=true_vote_item).id
 
             vote_history = VoteHistory(
                 voter = self.request.user,
@@ -466,7 +466,7 @@ class VoteView(LoginRequiredMixin, View):
         # テンプレート表示用情報の取得
         quantity_list = []
         for i in range(1,31):
-            temp_item_id = Item.objects.filter(item__iexact=i)[0].id
+            temp_item_id = Item.objects.filter(item=i)[0].id
             print("temp_item_id : " + str(temp_item_id))
             if VoteQuantity.objects.filter(rankings_id=id, items__id=temp_item_id).exists():
                 temp_vote_quantity_id = VoteQuantity.objects.get(rankings_id=id, items__id=temp_item_id).id
