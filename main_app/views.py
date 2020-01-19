@@ -182,7 +182,7 @@ class CreateView(LoginRequiredMixin, View):
             vote_quantity = VoteQuantity(
                 quantity = 0,
             )
-            vote_quantity.items_id = Item.objects.get(item__iexact=i + 1).id
+            vote_quantity.items_id = Item.objects.get(item=i + 1).id
             vote_quantity.rankings_id = ranking.uuid
             vote_quantity.save()
 
@@ -215,7 +215,7 @@ class CreateView(LoginRequiredMixin, View):
             categories_list.append(str(ranking.category.all()[i].name))
 
         # 投票履歴からそのユーザの投票数を取得
-        if VoteHistory.objects.filter(voter=self.request.user, rankings_id=id).exists():
+        if VoteHistory.objects.filter(voter=self.request.user, rankings_id=ranking.uuid).exists():
             user_vote_quantity = VoteHistory.objects.filter(voter=self.request.user, rankings_id=id).count()
         else:
             user_vote_quantity = 0
@@ -232,7 +232,7 @@ class CreateView(LoginRequiredMixin, View):
         # ユーザの投票数をリストに格納し、全体の投票数の大きい順に並べ替え
         user_vote_quantity_list = [0] * item_range
         sorted_user_vote_quantity_list = [0] * item_range
-        if VoteHistory.objects.filter(voter=self.request.user, rankings_id=id).exists():
+        if VoteHistory.objects.filter(voter=self.request.user, rankings_id=ranking.uuid).exists():
             for i in range(user_vote_quantity):
                 user_voted_items = VoteHistory.objects.filter(voter=self.request.user, rankings_id=id)[i].items.item
                 user_vote_quantity_list[user_voted_items - 1] += 1
